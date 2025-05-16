@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		712DC8362DD7128F00AC6D9D /* SharingGRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 712DC8352DD7128F00AC6D9D /* SharingGRDB */; };
+		712DC85D2DD748DE00AC6D9D /* DependenciesTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 712DC85C2DD748DE00AC6D9D /* DependenciesTestSupport */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		712DC8142DD7115C00AC6D9D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +34,23 @@
 		712DC81D2DD7115C00AC6D9D /* RemindersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RemindersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		712DC8332DD711FA00AC6D9D /* Exceptions for "Reminders" folder in "RemindersTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				RemindersListFeature.swift,
+				Schema.swift,
+			);
+			target = 712DC8122DD7115C00AC6D9D /* RemindersTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		712DC8072DD7115A00AC6D9D /* Reminders */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				712DC8332DD711FA00AC6D9D /* Exceptions for "Reminders" folder in "RemindersTests" target */,
+			);
 			path = Reminders;
 			sourceTree = "<group>";
 		};
@@ -52,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				712DC8362DD7128F00AC6D9D /* SharingGRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				712DC85D2DD748DE00AC6D9D /* DependenciesTestSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +133,7 @@
 			);
 			name = Reminders;
 			packageProductDependencies = (
+				712DC8352DD7128F00AC6D9D /* SharingGRDB */,
 			);
 			productName = Reminders;
 			productReference = 712DC8052DD7115A00AC6D9D /* Reminders.app */;
@@ -135,6 +157,7 @@
 			);
 			name = RemindersTests;
 			packageProductDependencies = (
+				712DC85C2DD748DE00AC6D9D /* DependenciesTestSupport */,
 			);
 			productName = RemindersTests;
 			productReference = 712DC8132DD7115C00AC6D9D /* RemindersTests.xctest */;
@@ -195,6 +218,10 @@
 			);
 			mainGroup = 712DC7FC2DD7115A00AC6D9D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				712DC8342DD7128F00AC6D9D /* XCRemoteSwiftPackageReference "sharing-grdb" */,
+				712DC85B2DD748DE00AC6D9D /* XCRemoteSwiftPackageReference "swift-dependencies" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 712DC8062DD7115A00AC6D9D /* Products */;
 			projectDirPath = "";
@@ -407,10 +434,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samadhihuang.Reminders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -420,7 +447,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 2.4;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -446,10 +473,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samadhihuang.Reminders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -459,7 +486,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 2.4;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -471,8 +498,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7V58U7PTNS;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samadhihuang.RemindersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -482,7 +509,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reminders.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Reminders";
-				XROS_DEPLOYMENT_TARGET = 2.4;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -494,8 +521,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7V58U7PTNS;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samadhihuang.RemindersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -505,7 +532,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reminders.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Reminders";
-				XROS_DEPLOYMENT_TARGET = 2.4;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -593,6 +620,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		712DC8342DD7128F00AC6D9D /* XCRemoteSwiftPackageReference "sharing-grdb" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/sharing-grdb.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.2;
+			};
+		};
+		712DC85B2DD748DE00AC6D9D /* XCRemoteSwiftPackageReference "swift-dependencies" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-dependencies.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		712DC8352DD7128F00AC6D9D /* SharingGRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 712DC8342DD7128F00AC6D9D /* XCRemoteSwiftPackageReference "sharing-grdb" */;
+			productName = SharingGRDB;
+		};
+		712DC85C2DD748DE00AC6D9D /* DependenciesTestSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 712DC85B2DD748DE00AC6D9D /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = DependenciesTestSupport;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 712DC7FD2DD7115A00AC6D9D /* Project object */;
 }

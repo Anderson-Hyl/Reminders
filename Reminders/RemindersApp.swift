@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct RemindersApp: App {
+    init() {
+        let _ = try! appDatabase()
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()
