@@ -1,0 +1,67 @@
+import SwiftUI
+import SharingGRDB
+
+struct RemindersListForm: View {
+	@Dependency(\.defaultDatabase) var database
+	@Environment(\.dismiss) var dismiss
+	@State private var remindersList: RemindersList.Draft
+	init(remindersList: RemindersList.Draft) {
+		self._remindersList = State(wrappedValue: remindersList)
+	}
+	var body: some View {
+		Form {
+			Section {
+				VStack {
+					TextField("List Name", text: $remindersList.title)
+						.font(.system(.title2, design: .rounded, weight: .bold))
+						.foregroundStyle(remindersList.color.swiftUIColor)
+						.multilineTextAlignment(.center)
+						.padding()
+						.textFieldStyle(.plain)
+				}
+				.background(Color(.secondarySystemBackground))
+				.clipShape(.buttonBorder)
+			}
+			ColorPicker("Color", selection: $remindersList.color.swiftUIColor)
+		}
+		.navigationBarTitleDisplayMode(.inline)
+		.toolbar {
+			ToolbarItem {
+				Button("Save") {
+					withErrorReporting {
+						try database.write { db in
+							try RemindersList
+								.upsert(remindersList)
+								.execute(db)
+						}
+					}
+					dismiss()
+				}
+			}
+			ToolbarItem(placement: .cancellationAction) {
+				Button("Cancel") {
+					dismiss()
+				}
+			}
+		}
+	}
+}
+
+extension Int {
+	var swiftUIColor: Color {
+		get {
+			Color(hex: self)
+		}
+		set {
+			guard let components = UIColor(newValue).cgColor.components
+			else { return }
+			let r = Int(components[0] * 0xFF) << 24
+			let g = Int(components[1] * 0xFF) << 16
+			let b = Int(components[2] * 0xFF) << 8
+			let a = Int(
+				(components.indices.contains(3) ? components[3] : 1) * 0xFF
+			)
+			self = r | g | b | a
+		}
+	}
+}
