@@ -3,7 +3,7 @@ import OSLog
 import SharingGRDB
 
 @Table
-struct RemindersList: Identifiable {
+struct RemindersList: Identifiable, Equatable {
 	let id: Int
 //	@Column(as: Color.HexRepresentation.self)
 	var color = 0x4a_99_ef_ff
