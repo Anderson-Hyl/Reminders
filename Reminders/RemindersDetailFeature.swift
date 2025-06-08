@@ -13,6 +13,8 @@ class RemindersDetailModel {
 	@ObservationIgnored
 	@Shared var ordering: Ordering
 	
+	var reminderForm: Reminder.Draft?
+	
 	let detailType: DetailType
 	
 	init(detailType: DetailType) {
@@ -38,6 +40,17 @@ class RemindersDetailModel {
 	func orderingButtonTapped(_ ordering: Ordering) async {
 		$ordering.withLock { $0 = ordering }
 		await updateQuery()
+	}
+	
+	func reminderDetailsButtonTapped(reminder: Reminder) {
+		reminderForm = Reminder.Draft(reminder)
+	}
+	
+	func newReminderButtonTapped() {
+		switch detailType {
+		case .remindersList(let remindersList):
+			reminderForm = Reminder.Draft(remindersListID: remindersList.id)
+		}
 	}
 	
 	var remindersQuery: some SelectStatementOf<Reminder> {
@@ -73,6 +86,16 @@ class RemindersDetailModel {
 			try await $reminders.load(remindersQuery, animation: .default)
 		}
 	}
+}
+
+extension RemindersDetailModel: Hashable {
+	nonisolated static func == (lhs: RemindersDetailModel, rhs: RemindersDetailModel) -> Bool {
+		lhs === rhs
+	}
+	nonisolated func hash(into hasher: inout Hasher) {
+		hasher.combine(ObjectIdentifier(self))
+	}
+	
 }
 
 enum Ordering: String, CaseIterable {
@@ -126,7 +149,7 @@ struct RemindersDetailView: View {
 					reminder: reminder,
 					tags: ["weekend", "fun"]
 				) {
-					// Details button tapped in row
+					model.reminderDetailsButtonTapped(reminder: reminder)
 				}
 			}
 		}
@@ -136,7 +159,7 @@ struct RemindersDetailView: View {
 			ToolbarItem(placement: .bottomBar) {
 				HStack {
 					Button {
-						
+						model.newReminderButtonTapped()
 					} label: {
 						HStack {
 							Image(systemName: "plus.circle.fill")
@@ -201,6 +224,12 @@ struct RemindersDetailView: View {
 					Image(systemName: "ellipsis.circle")
 						.tint(model.detailType.color)
 				}
+			}
+		}
+		.sheet(item: $model.reminderForm) { reminderDraft in
+			NavigationStack {
+				ReminderFormView(reminder: reminderDraft)
+					.navigationTitle(reminderDraft.id == nil ? "New reminder" : "Edit reminder")
 			}
 		}
 	}

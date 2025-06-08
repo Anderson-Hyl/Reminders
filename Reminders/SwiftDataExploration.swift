@@ -59,20 +59,23 @@ final class RemindersListModel: Identifiable, Equatable {
 final class ReminderModel: Identifiable {
     var dueDate: Date?
     var isCompleted = 0
-    var isFlagged = false
+    var isFlagged = 0
     var notes = ""
     var priority: Priority?
     @Relationship(inverse: \RemindersListModel.reminders)
     var remindersList: RemindersListModel
     var title = ""
 
-    enum Priority: Int, Codable {
+    enum Priority: Int, Codable, Comparable {
         case low = 1
         case medium
         case high
+			static func <(lhs: Priority, rhs: Priority) -> Bool {
+				lhs.rawValue < rhs.rawValue
+			}
     }
     
-    init(dueDate: Date? = nil, isCompleted: Int = 0, isFlagged: Bool = false, notes: String = "", priority: Priority? = nil, remindersList: RemindersListModel, title: String = "") {
+    init(dueDate: Date? = nil, isCompleted: Int = 0, isFlagged: Int = 0, notes: String = "", priority: Priority? = nil, remindersList: RemindersListModel, title: String = "") {
         self.dueDate = dueDate
         self.isCompleted = isCompleted
         self.isFlagged = isFlagged
@@ -101,6 +104,17 @@ func remindersQuery(
             $0.remindersList.id == id
         }
     }
+	let orderingSorts: [SortDescriptor<ReminderModel>] = switch ordering {
+	case .dueDate:
+		[SortDescriptor(\.dueDate)]
+	case .priority:
+		[
+			SortDescriptor(\.priority, order: .reverse),
+			SortDescriptor(\.isFlagged, order: .reverse),
+		]
+	case .title:
+		[SortDescriptor(\.title)]
+	}
     return Query(
         filter: #Predicate {
             if !showCompleted {
@@ -111,7 +125,7 @@ func remindersQuery(
         },
         sort: [
             SortDescriptor(\.isCompleted)
-        ],
+        ] + orderingSorts,
         animation: .default
     )
 }

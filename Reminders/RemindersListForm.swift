@@ -4,10 +4,7 @@ import SharingGRDB
 struct RemindersListForm: View {
 	@Dependency(\.defaultDatabase) var database
 	@Environment(\.dismiss) var dismiss
-	@State private var remindersList: RemindersList.Draft
-	init(remindersList: RemindersList.Draft) {
-		self._remindersList = State(wrappedValue: remindersList)
-	}
+	@State var remindersList: RemindersList.Draft
 	var body: some View {
 		Form {
 			Section {

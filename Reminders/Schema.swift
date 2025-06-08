@@ -2,7 +2,7 @@ import Foundation
 import OSLog
 import SharingGRDB
 
-@Table
+@Table("remindersLists")
 struct RemindersList: Identifiable, Equatable {
 	let id: Int
 //	@Column(as: Color.HexRepresentation.self)
@@ -12,13 +12,13 @@ struct RemindersList: Identifiable, Equatable {
 
 extension RemindersList.Draft: Identifiable {}
 
-@Table
+@Table("tags")
 struct Tag: Identifiable {
 	let id: Int
 	var title = ""
 }
 
-@Table
+@Table("reminders")
 struct Reminder: Identifiable {
 	let id: Int
 	@Column(as: Date.ISO8601Representation?.self)
@@ -37,7 +37,9 @@ struct Reminder: Identifiable {
 	}
 }
 
-@Table
+extension Reminder.Draft: Identifiable {}
+
+@Table("reminderTags")
 struct ReminderTag {
 	let reminderID: Reminder.ID
 	let tagID: Tag.ID
@@ -76,7 +78,7 @@ func appDatabase() throws -> any DatabaseWriter {
 			"""
 			CREATE TABLE "remindersLists" (
 			    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-			    "color" INTEGER NOT NULL DEFAULT \(raw: 0x4a_99_ef_ff),
+					"color" INTEGER NOT NULL DEFAULT \(raw: 0x4a_99_ef_ff),
 			    "title" TEXT NOT NULL DEFAULT ''
 			) STRICT
 			"""
